@@ -5,6 +5,10 @@
     width: 45px;
     height: 45px;
 }
+.avatar-xsmall{
+    width: 40px;
+    height: 40px;
+}
 .custom-dot-margin{
     margin-top: 12px;
     margin-left: 10px;

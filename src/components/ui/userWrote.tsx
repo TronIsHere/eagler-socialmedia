@@ -25,19 +25,19 @@ const UserWroteColumn:FC<props> = ({hasReplies})=>{
              <p className="text-white">Follow us on the eagler</p>
              <div className="flex mt-5 text-low-color-accent">
                 <div className={'cursor-pointer -mt-1'}>
-                <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
+                <FontAwesomeIcon icon={faHeart} className={'hover:text-white'}></FontAwesomeIcon>
                 <span className="ml-2 -mt-1 mr-4">25</span>
                 </div>
                 <div className={'cursor-pointer -mt-1'}>
-                <FontAwesomeIcon icon={faFeather}></FontAwesomeIcon>
+                <FontAwesomeIcon icon={faFeather} className={'hover:text-white'}></FontAwesomeIcon>
                 <span className="ml-2 -mt-1 mr-4">2</span>
                 </div>
                 <div className={'cursor-pointer -mt-1'}>
-                <FontAwesomeIcon icon={faCommentDots}></FontAwesomeIcon>
+                <FontAwesomeIcon icon={faCommentDots} className={'hover:text-white'}></FontAwesomeIcon>
                 <span className="ml-2 -mt-1 mr-4">5</span>
                 </div>
                 <div className={'cursor-pointer -mt-1'}>
-                <FontAwesomeIcon icon={faBookmark}></FontAwesomeIcon>
+                <FontAwesomeIcon icon={faBookmark} className={'hover:text-white'}></FontAwesomeIcon>
                 </div>
              </div>
              {hasReplies? <div className="flex">

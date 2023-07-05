@@ -2,6 +2,8 @@ import './style.css'
 import WriteComponent from './components/ui/write'
 import UserWroteColumn from './components/ui/userWrote'
 import MainMenu from './components/ui/mainMenu'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowDown, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 function App() {
   return (
@@ -19,10 +21,19 @@ function App() {
         <div className=''>
           <UserWroteColumn></UserWroteColumn>
           <UserWroteColumn hasReplies={true}></UserWroteColumn>
+          <UserWroteColumn hasReplies={true}></UserWroteColumn>
           
         </div>
       </div>
-      <div className="bg-secondary border-whiteGray "></div>
+      <div className="bg-secondary border-whiteGray ">
+      <div className="w-full bg-primary h-14 flex">
+        <div className="p-2 pl-5 flex cursor-pointer">
+          <img src="https://placehold.co/500x500?text=Avatar" className='avatar-xsmall rounded-full' alt="" />
+          <span className='text-white mt-2 ml-3'>Erwin aghajani</span>
+          <FontAwesomeIcon icon={faChevronDown} className={'text-white mt-3 ml-3'}></FontAwesomeIcon>
+        </div>
+      </div>
+      </div>
     </div>
     </>
   )
