@@ -3,7 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
 
 
-const UserWroteColumn:FC = ()=>{
+interface props{
+    hasReplies?:boolean
+}
+const UserWroteColumn:FC<props> = ({hasReplies})=>{
     return(
         <div className="border-b-2 border-whiteGray pb-8 p-5">
             <div className="flex">
@@ -21,14 +24,26 @@ const UserWroteColumn:FC = ()=>{
              <br />
              <p className="text-white">Follow us on the eagler</p>
              <div className="flex mt-5 text-low-color-accent">
+                <div className={'cursor-pointer -mt-1'}>
                 <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
                 <span className="ml-2 -mt-1 mr-4">25</span>
+                </div>
+                <div className={'cursor-pointer -mt-1'}>
                 <FontAwesomeIcon icon={faFeather}></FontAwesomeIcon>
                 <span className="ml-2 -mt-1 mr-4">2</span>
+                </div>
+                <div className={'cursor-pointer -mt-1'}>
                 <FontAwesomeIcon icon={faCommentDots}></FontAwesomeIcon>
                 <span className="ml-2 -mt-1 mr-4">5</span>
+                </div>
+                <div className={'cursor-pointer -mt-1'}>
                 <FontAwesomeIcon icon={faBookmark}></FontAwesomeIcon>
+                </div>
              </div>
+             {hasReplies? <div className="flex">
+             <img src="curved-right-arrow.png" alt="" width={25} className={'ml-2 mt-3'} />
+             <a href="" className="ml-2 mt-3  text-links">25 More Replies</a>
+             </div>: null}
              </div>
            
         </div>
