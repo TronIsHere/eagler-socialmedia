@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+    @apply bg-secondary;
+}
+.side-login{
+background: hsla(205, 60%, 54%, 1);
+
+background: linear-gradient(90deg, hsla(205, 60%, 54%, 1) 0%, hsla(206, 67%, 75%, 1) 100%);
+
+background: -moz-linear-gradient(90deg, hsla(205, 60%, 54%, 1) 0%, hsla(206, 67%, 75%, 1) 100%);
+
+background: -webkit-linear-gradient(90deg, hsla(205, 60%, 54%, 1) 0%, hsla(206, 67%, 75%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#4595D0", endColorstr="#96C6EA", GradientType=1 );
+}

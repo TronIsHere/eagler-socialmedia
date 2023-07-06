@@ -14,7 +14,8 @@ module.exports = {
         'second-accent':'#b9b8b9',
         'low-color-accent':'#3e3e3e',
         'slightGray':'#2c2c2c',
-        'links':'#426a86'
+        'links':'#426a86',
+        'primary-button':'#4595d0'
       },
       padding:{
         
