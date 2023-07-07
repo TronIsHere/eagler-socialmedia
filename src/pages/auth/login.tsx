@@ -1,7 +1,8 @@
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
-import { faAppleAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
+
+import LoginForm from "../../components/ui/forms/loginForm";
 
 
 const LoginPage:FC = ()=>{
@@ -12,13 +13,7 @@ const LoginPage:FC = ()=>{
             <div className="flex justify-center items-center h-screen  ">
                 <div className="flex-col w-3/4   ">
                 <h1 className="text-4xl font-bold">Log in</h1>
-                <form className="mt-10">
-                    <p className="text-second-accent">Email</p>
-                    <input className="w-full mt-3  border rounded-md h-10 pl-2 focus:outline-none border-slightGray bg-secondary"></input>
-                    <p className="text-second-accent mt-4">Password</p>
-                    <input className="w-full mt-3  border rounded-md h-10 pl-2 focus:outline-none border-slightGray bg-secondary"></input>
-                    <button className="w-full mt-10 h-10 rounded-md bg-primary-button hover:opacity-80">Log in</button>
-                </form>
+                <LoginForm></LoginForm>
                 <div className="grid grid-cols-5 mt-12">
                     <div className="w-full h-1 bg-slightGray col-span-2"></div>
                     <div className="w-full h-1 flex justify-center items-center">
