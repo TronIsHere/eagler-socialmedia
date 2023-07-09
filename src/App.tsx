@@ -1,9 +1,9 @@
 import './style.css'
-import WriteComponent from './components/ui/write'
-import UserWroteColumn from './components/ui/userWrote'
 import MainMenu from './components/ui/mainMenu'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowDown, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import ProfilePage from './pages/home/profile'
+import TimelinePage from './pages/home/timeline'
 
 function App() {
   return (
@@ -17,13 +17,7 @@ function App() {
       </div>
       <div className="bg-secondary border-r-2 border-whiteGray col-span-3">
       <div className="w-full bg-primary h-14 flex"></div>
-        <WriteComponent></WriteComponent>
-        <div className=''>
-          <UserWroteColumn></UserWroteColumn>
-          <UserWroteColumn hasReplies={true}></UserWroteColumn>
-          <UserWroteColumn hasReplies={true}></UserWroteColumn>
-          
-        </div>
+      <ProfilePage></ProfilePage>
       </div>
       <div className="bg-secondary border-whiteGray ">
       <div className="w-full bg-primary h-14 flex">

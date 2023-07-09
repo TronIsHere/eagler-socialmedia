@@ -1,4 +1,4 @@
-import { Field, FieldHookConfig, useField } from "formik";
+import {useField } from "formik";
 import { FC } from "react";
 interface myProps{
     type?:string,
