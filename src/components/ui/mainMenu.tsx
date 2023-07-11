@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBell, faCircle, faGift, faHome, faImage, faPaperPlane, faSearch, faSmile, faUser, faVideo } from '@fortawesome/free-solid-svg-icons'
+import { faBell, faHome, faSearch, faUser  } from '@fortawesome/free-solid-svg-icons'
 
 const MainMenu:FC = ()=>{
     return(

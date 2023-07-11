@@ -1,7 +1,6 @@
-import { faCalendar, faCalendarAlt, faDotCircle, faEllipsis, faLink, faPerson, faUser } from "@fortawesome/free-solid-svg-icons";
+import {faCalendarAlt, faEllipsis, faLink, faPen, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UserWroteColumn from "../../components/ui/userWrote";
-import WriteComponent from "../../components/ui/write";
 
 const ProfilePage = () => {
   return (
@@ -28,13 +27,17 @@ const ProfilePage = () => {
           <p className="mt-4 ml-10 text-links hover:underline"><FontAwesomeIcon icon={faLink} className="mr-2"></FontAwesomeIcon>whitediv.com</p>
           </div>
           <div className="flex justify-center mt-8">
-            <div className="flex text-white border-whiteGray border-2 p-2 px-5 rounded-lg mr-5 cursor-pointer">
+            <div className="flex text-white border-gray-600 border-2 p-2 px-5 rounded-lg mr-5 cursor-pointer">
               <FontAwesomeIcon icon={faUser} className="mt-1 mr-2"></FontAwesomeIcon>
               <span className="">Follow</span>
             </div>
-            <div className="flex text-white border-whiteGray border-2 p-2 px-5 rounded-lg cursor-pointer">
+            <div className="flex text-white border-gray-600 border-2 p-2 px-5 rounded-lg cursor-pointer">
               <FontAwesomeIcon icon={faEllipsis} className="mt-1 mr-2"></FontAwesomeIcon>
               <span className="">More</span>
+            </div>
+            <div className="flex text-white border-gray-600 border-2 p-2 px-5 rounded-lg ml-5 cursor-pointer">
+              <FontAwesomeIcon icon={faPen} className="mt-1 mr-2"></FontAwesomeIcon>
+              <span className="">Edit</span>
             </div>
           </div>
         </div>

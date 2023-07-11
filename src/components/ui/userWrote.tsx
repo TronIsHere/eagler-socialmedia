@@ -1,4 +1,4 @@
-import { faBookBookmark, faBookmark, faCircle, faComment, faCommentDots, faFeather, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faBookmark, faCommentDots, faFeather, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
 
