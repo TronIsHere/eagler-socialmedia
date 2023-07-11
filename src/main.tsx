@@ -7,13 +7,28 @@ import LoginPage from './pages/auth/login'
 import App from './App'
 import RegisterPage from './pages/auth/register'
 import NotFoundPage from './pages/404'
+import ProfilePage from './pages/home/profile'
+import TimelinePage from './pages/home/timeline'
 
 const router = createBrowserRouter([
   {
     path:'/',
     element:<App></App>,
-    errorElement:<NotFoundPage></NotFoundPage>
+    errorElement:<NotFoundPage></NotFoundPage>,
+    children:[
+      {
+        path:'profile',
+        element:<ProfilePage></ProfilePage>,
+        errorElement:<NotFoundPage></NotFoundPage>
+      },
+      {
+        path:'home',
+        element:<TimelinePage></TimelinePage>,
+        errorElement:<NotFoundPage></NotFoundPage>
+      },
+    ]
   },
+
   {
     path:'/auth/login',
     element:<LoginPage></LoginPage>
@@ -31,3 +46,5 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
    <RouterProvider router={router}></RouterProvider>
   </React.StrictMode>,
 )
+
+export default router;

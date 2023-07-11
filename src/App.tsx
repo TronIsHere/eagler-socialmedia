@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import ProfilePage from './pages/home/profile'
 import TimelinePage from './pages/home/timeline'
+import { Outlet, RouterProvider } from 'react-router-dom'
+import router from './main'
 
 function App() {
   return (
@@ -17,7 +19,7 @@ function App() {
       </div>
       <div className="bg-secondary border-r-2 border-whiteGray col-span-3">
       <div className="w-full bg-primary h-14 flex"></div>
-      <ProfilePage></ProfilePage>
+      <Outlet></Outlet>
       </div>
       <div className="bg-secondary border-whiteGray ">
       <div className="w-full bg-primary h-14 flex">

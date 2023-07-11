@@ -1,8 +1,17 @@
 import {faCalendarAlt, faEllipsis, faLink, faPen, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
+import EditModal from "../../components/ui/modals/editUser";
 import UserWroteColumn from "../../components/ui/userWrote";
 
 const ProfilePage = () => {
+  let [isEditModalOpen, setEditModalOpen] = useState(false);
+  const closeModal = ()=>{
+    setEditModalOpen(false);
+  }
+  const openModal = ()=>{
+    setEditModalOpen(true);
+  }
   return (
     <>
       <section>
@@ -35,10 +44,11 @@ const ProfilePage = () => {
               <FontAwesomeIcon icon={faEllipsis} className="mt-1 mr-2"></FontAwesomeIcon>
               <span className="">More</span>
             </div>
-            <div className="flex text-white border-gray-600 border-2 p-2 px-5 rounded-lg ml-5 cursor-pointer">
+            <div className="flex text-white border-gray-600 border-2 p-2 px-5 rounded-lg ml-5 cursor-pointer" onClick={openModal}>
               <FontAwesomeIcon icon={faPen} className="mt-1 mr-2"></FontAwesomeIcon>
               <span className="">Edit</span>
             </div>
+            <EditModal isOpen={isEditModalOpen} closeCallBack={closeModal}></EditModal>
           </div>
         </div>
         <div className="personal-eagles h-screen">
