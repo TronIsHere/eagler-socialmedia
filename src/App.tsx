@@ -6,9 +6,7 @@ import ProfilePage from './pages/home/profile'
 import TimelinePage from './pages/home/timeline'
 import { Outlet, RouterProvider } from 'react-router-dom'
 import router from './main'
-
-function App() {
-  return (
+import { PageRow } from './components/ui/grids/pageRow'
     <>
     <div className="grid grid-cols-5 w-full">
       <div className="bg-secondary border-r-2 border-whiteGray ">
@@ -32,6 +30,14 @@ function App() {
       </div>
     </div>
     </>
+
+function App() {
+  return (
+    <PageRow 
+    gridOneChild={<MainMenu/>}
+    gridTwoChild={<Outlet/>}
+    gridThreeChild={<FontAwesomeIcon icon={faChevronDown} className={'text-white mt-3 ml-3'}></FontAwesomeIcon>}
+    />
   )
 }
 

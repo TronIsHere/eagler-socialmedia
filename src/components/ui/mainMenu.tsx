@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faHome, faSearch, faUser  } from '@fortawesome/free-solid-svg-icons'
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const MainMenu:FC = ()=>{
     return(
