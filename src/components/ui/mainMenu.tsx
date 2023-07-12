@@ -9,7 +9,9 @@ const MainMenu:FC = ()=>{
         <li  className='p-2 hover:bg-slightGray cursor-pointer menu-link'>
         <NavLink to={'/home'} className="block" ><FontAwesomeIcon icon={faHome} className="pr-3"></FontAwesomeIcon> Home</NavLink>
         </li>
-        <li className='p-2 hover:bg-slightGray cursor-pointer'><FontAwesomeIcon icon={faSearch} className="pr-3"></FontAwesomeIcon>Explore</li>
+        <li className='p-2 hover:bg-slightGray cursor-pointer'>
+        <NavLink to={'/explore'} className="block" ><FontAwesomeIcon icon={faSearch} className="pr-3"></FontAwesomeIcon> Explore</NavLink>
+        </li>
         <li className='p-2 hover:bg-slightGray cursor-pointer'><FontAwesomeIcon icon={faBell} className="pr-3"></FontAwesomeIcon>Notification</li>
         <li className='p-2 hover:bg-slightGray cursor-pointer'>
         <NavLink to={'/profile'} className="block" ><FontAwesomeIcon icon={faUser} className="pr-3"></FontAwesomeIcon> Profile</NavLink>
