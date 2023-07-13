@@ -1,21 +1,9 @@
-import './style.css'
-import MainMenu from './components/ui/mainMenu'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
-import ProfilePage from './pages/home/profile'
-import TimelinePage from './pages/home/timeline'
-import { Outlet, RouterProvider } from 'react-router-dom'
-import router from './main'
-import { PageRow } from './components/ui/grids/pageRow'
+import "./style.css";
+import { Outlet } from "react-router-dom";
+import { ThreeColLayout } from "./components/ui/layouts/threeColLayout";
 
 function App() {
-  return (
-    <PageRow 
-    gridOneChild={<MainMenu/>}
-    gridTwoChild={<Outlet/>}
-    gridThreeChild={<FontAwesomeIcon icon={faChevronDown} className={'text-white mt-3 ml-3'}></FontAwesomeIcon>}
-    />
-  )
+  return <ThreeColLayout children={<Outlet />} />;
 }
 
-export default App
+export default App;

@@ -9,7 +9,7 @@ import RegisterPage from "./pages/auth/register";
 import NotFoundPage from "./pages/404";
 import ProfilePage from "./pages/home/profile";
 import TimelinePage from "./pages/home/timeline";
-import { ExplorePage } from "./pages/home/explore";
+import { ExplorePage } from "./pages/home/explore/explore";
 
 const router = createBrowserRouter([
   {
