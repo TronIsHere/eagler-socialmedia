@@ -5,6 +5,8 @@ import { Fragment, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
+// TODO: will refactor this part to separate file
+
 function MyDropzone() {
   const onDrop = useCallback((acceptedFiles: any) => {
     console.log(acceptedFiles);
