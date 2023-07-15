@@ -10,6 +10,7 @@ import NotFoundPage from "./pages/404";
 import ProfilePage from "./pages/home/profile";
 import TimelinePage from "./pages/home/timeline";
 import { ExplorePage } from "./pages/home/explore/explore";
+import { NotificationPage } from "./pages/home/notification";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,11 @@ const router = createBrowserRouter([
       {
         path: "explore",
         element: <ExplorePage></ExplorePage>,
+        errorElement: <NotFoundPage></NotFoundPage>,
+      },
+      {
+        path: "notifications",
+        element: <NotificationPage></NotificationPage>,
         errorElement: <NotFoundPage></NotFoundPage>,
       },
     ],
