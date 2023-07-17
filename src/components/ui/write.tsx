@@ -8,11 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
 import { FC, useRef, useState } from "react";
 import AddImageModal from "./modals/addImage";
-import EditModal from "./modals/editUser";
-
-// interface props {
-//     color?:any
-//    }
 
 const WriteComponent: FC = () => {
   const [value, changeValue] = useState("");
