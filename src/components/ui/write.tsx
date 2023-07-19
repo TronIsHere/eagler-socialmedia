@@ -6,7 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
-import { FC, useRef, useState } from "react";
+import { FC } from "react";
 import { useWrite } from "../../hooks/useWrite";
 import AddImageModal from "./modals/addImage";
 
@@ -58,10 +58,9 @@ const WriteComponent: FC = () => {
             <div className="absolute">
               {showEmoji ? (
                 <EmojiPicker
-                  onEmojiClick={(
-                    emojiData: EmojiClickData,
-                    event: MouseEvent
-                  ) => addEmoji(emojiData)}
+                  onEmojiClick={(emojiData: EmojiClickData) =>
+                    addEmoji(emojiData)
+                  }
                 />
               ) : (
                 ""
