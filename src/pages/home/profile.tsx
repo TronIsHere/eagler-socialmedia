@@ -6,18 +6,13 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+
 import EditModal from "../../components/ui/modals/editUser";
 import UserWroteColumn from "../../components/ui/userWrote";
+import { useProfile } from "../../hooks/useProfile";
 
 const ProfilePage = () => {
-  let [isEditModalOpen, setEditModalOpen] = useState(false);
-  const closeModal = () => {
-    setEditModalOpen(false);
-  };
-  const openModal = () => {
-    setEditModalOpen(true);
-  };
+  const { closeModal, openModal, isEditModalOpen } = useProfile();
   return (
     <>
       <div className="w-full bg-primary h-14 flex"></div>

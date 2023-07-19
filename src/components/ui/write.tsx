@@ -7,31 +7,29 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
 import { FC, useRef, useState } from "react";
+import { useWrite } from "../../hooks/useWrite";
 import AddImageModal from "./modals/addImage";
 
 const WriteComponent: FC = () => {
-  const [value, changeValue] = useState("");
-  const [showEmoji, setShowEmoji] = useState(false);
-  const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  let [isEditModalOpen, setEditModalOpen] = useState(false);
-  const closeModal = () => {
-    setEditModalOpen(false);
-  };
-  const openModal = () => {
-    setEditModalOpen(true);
-  };
-  const addemoji = (emojiData: EmojiClickData) => {
-    changeValue((prevstate) => `${prevstate} ${emojiData.emoji}`);
-  };
+  const {
+    textAreaRef,
+    textValue,
+    openModal,
+    closeModal,
+    isEditModalOpen,
+    showEmoji,
+    addEmoji,
+    handleChangeValue,
+    toggleShowEmoji,
+  } = useWrite();
   return (
     <div className="border-b-2 border-whiteGray  p-5  ">
       <textarea
         ref={textAreaRef}
-        value={value}
+        value={textValue}
         rows={4}
         onChange={(e) => {
-          changeValue(e.target.value);
-          console.log(value);
+          handleChangeValue(e.target.value);
         }}
         placeholder="Share your thoughts..."
         className="bg-secondary w-full focus:outline-none text-second-accent text-xl "
@@ -50,7 +48,7 @@ const WriteComponent: FC = () => {
           <FontAwesomeIcon
             icon={faSmile}
             className="text-low-color-accent cursor-pointer ml-4 hover:text-white"
-            onClick={() => setShowEmoji(!showEmoji)}
+            onClick={() => toggleShowEmoji}
           ></FontAwesomeIcon>
           <AddImageModal
             isOpen={isEditModalOpen}
@@ -63,7 +61,7 @@ const WriteComponent: FC = () => {
                   onEmojiClick={(
                     emojiData: EmojiClickData,
                     event: MouseEvent
-                  ) => addemoji(emojiData)}
+                  ) => addEmoji(emojiData)}
                 />
               ) : (
                 ""

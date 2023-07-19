@@ -2,10 +2,10 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Tab } from "@headlessui/react";
 import { FC } from "react";
+
+import classNames from "../../../components/utils/general";
 import { ForyouPage } from "./foryou";
-function classNames(...classes: any[]) {
-  return classes.filter(Boolean).join(" ");
-}
+
 export const ExplorePage: FC = () => {
   return (
     <>
