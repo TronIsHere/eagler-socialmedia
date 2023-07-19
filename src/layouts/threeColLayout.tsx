@@ -5,7 +5,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Popover } from "@headlessui/react";
 import { FC, ReactNode } from "react";
-import MainMenu from "../mainMenu";
+import MainMenu from "../components/ui/mainMenu";
 
 interface props {
   children: ReactNode;
