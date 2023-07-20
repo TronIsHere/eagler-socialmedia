@@ -21,6 +21,7 @@ const WriteComponent: FC = () => {
     addEmoji,
     handleChangeValue,
     toggleShowEmoji,
+    submitWrite,
   } = useWrite();
   return (
     <div className="border-b-2 border-whiteGray  p-5  ">
@@ -68,7 +69,10 @@ const WriteComponent: FC = () => {
             </div>
           </div>
         </div>
-        <button className="bg-red-600 text-white px-3 py-2 rounded-full -mt-4 hover:opacity-50">
+        <button
+          className="bg-red-600 text-white px-3 py-2 rounded-full -mt-4 hover:opacity-50"
+          onClick={submitWrite}
+        >
           <FontAwesomeIcon icon={faPaperPlane}></FontAwesomeIcon>
         </button>
       </div>

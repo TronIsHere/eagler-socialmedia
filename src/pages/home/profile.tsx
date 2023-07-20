@@ -80,9 +80,9 @@ const ProfilePage = () => {
           </div>
         </div>
         <div className="personal-eagles h-screen">
+          {/* <UserWroteColumn></UserWroteColumn>
           <UserWroteColumn></UserWroteColumn>
-          <UserWroteColumn></UserWroteColumn>
-          <UserWroteColumn></UserWroteColumn>
+          <UserWroteColumn></UserWroteColumn> */}
         </div>
       </section>
     </>

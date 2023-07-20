@@ -1,9 +1,9 @@
-import Posts from "./posts";
+import Posts from "./post";
 
-interface User {
+export default interface UserModel {
   name: string;
-  email: string;
-  posts: Posts[];
+  id: string;
+  avatar: string;
+  // email: string;
+  // posts: Posts[];
 }
-
-export default User;

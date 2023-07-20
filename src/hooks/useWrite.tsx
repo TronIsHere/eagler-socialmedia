@@ -22,8 +22,12 @@ export const useWrite = () => {
   const toggleShowEmoji = () => {
     setShowEmoji(!showEmoji);
   };
+  const submitWrite = () => {
+    console.log(textValue);
+  };
 
   return {
+    submitWrite,
     closeModal,
     openModal,
     addEmoji,
