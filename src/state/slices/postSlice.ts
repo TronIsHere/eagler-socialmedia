@@ -1,10 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import PostModel from "../../models/post";
 import { RootState } from "../store";
-type ActionType = {
-  type:string,
-  payload?:number
-}
 const initialState:PostModel[]=[      {
   likes: 2,
   user: {

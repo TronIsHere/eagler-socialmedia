@@ -1,6 +1,5 @@
 import { EmojiClickData } from "emoji-picker-react/dist/types/exposedTypes";
 import { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
 import { addPost } from "../state/slices/postSlice";
 import { useAppDispatch } from "./useRedux";
 

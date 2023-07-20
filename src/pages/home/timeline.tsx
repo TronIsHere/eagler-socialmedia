@@ -1,11 +1,9 @@
 import { FC } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import UserWroteColumn from "../../components/ui/userWrote";
 import WriteComponent from "../../components/ui/write";
 import { useAppSelector } from "../../hooks/useRedux";
 import PostModel from "../../models/post";
 import { postSelector } from "../../state/slices/postSlice";
-import { RootState } from "../../state/store";
 
 const TimelinePage: FC = () => {
   const postList = useAppSelector(postSelector);
