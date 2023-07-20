@@ -23,6 +23,7 @@ const WriteComponent: FC = () => {
     toggleShowEmoji,
     submitWrite,
   } = useWrite();
+
   return (
     <div className="border-b-2 border-whiteGray  p-5  ">
       <textarea

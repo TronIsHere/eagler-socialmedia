@@ -11,6 +11,8 @@ import ProfilePage from "./pages/home/profile";
 import TimelinePage from "./pages/home/timeline";
 import { ExplorePage } from "./pages/home/explore/explore";
 import { NotificationPage } from "./pages/home/notification";
+import { Provider } from "react-redux";
+import { store } from "./state/store";
 
 const router = createBrowserRouter([
   {
@@ -53,7 +55,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <Provider store={store}>
+      <RouterProvider router={router}></RouterProvider>
+    </Provider>
   </React.StrictMode>
 );
 
