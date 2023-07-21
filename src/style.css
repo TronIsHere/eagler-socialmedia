@@ -21,3 +21,6 @@
     @apply bg-red-600;
     
 } */
+.preline{
+    white-space: pre-line;
+}

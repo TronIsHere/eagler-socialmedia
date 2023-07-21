@@ -4,6 +4,7 @@ import { Tab } from "@headlessui/react";
 import { FC } from "react";
 
 import classNames from "../../../components/utils/general";
+
 import { ForyouPage } from "./foryou";
 
 export const ExplorePage: FC = () => {
@@ -26,7 +27,6 @@ export const ExplorePage: FC = () => {
           <Tab.List className={"mb-5"}>
             <Tab
               className={({ selected }) => {
-                console.log(selected, 1);
                 return classNames(
                   "p-2 ml-5 mt-5  rounded-lg hover:opacity-50 focus:outline-none",
                   selected ? "bg-red-600" : "bg-slightGray"
@@ -37,7 +37,6 @@ export const ExplorePage: FC = () => {
             </Tab>
             <Tab
               className={({ selected }) => {
-                console.log(selected, 1);
                 return classNames(
                   "p-2 ml-5 mt-5  rounded-lg hover:opacity-50 focus:outline-none",
                   selected ? "bg-red-600" : "bg-slightGray"
@@ -48,7 +47,6 @@ export const ExplorePage: FC = () => {
             </Tab>
             <Tab
               className={({ selected }) => {
-                console.log(selected, 1);
                 return classNames(
                   "p-2 ml-5 mt-5  rounded-lg hover:opacity-50 focus:outline-none",
                   selected ? "bg-red-600" : "bg-slightGray"

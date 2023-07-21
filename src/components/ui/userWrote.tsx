@@ -29,7 +29,7 @@ const UserWroteColumn: FC<props> = ({ replies, post }) => {
         <div className="text-low-color-accent ml-2">5d</div>
       </div>
       <div className="ml-16 -mt-3">
-        <p className=" text-white    ">{post.content}</p>
+        <p className=" text-white preline">{post.content}</p>
         <div className="flex mt-5 text-low-color-accent">
           <div className={"cursor-pointer -mt-1 hover:text-white"}>
             <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>

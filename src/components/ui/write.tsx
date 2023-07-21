@@ -36,6 +36,11 @@ const WriteComponent: FC = () => {
         placeholder="Share your thoughts..."
         className="bg-secondary w-full focus:outline-none text-second-accent text-xl "
       />
+      {/* <ReactQuill
+        className="text-white"
+        value={textValue}
+        onChange={handleChangeValue}
+      /> */}
       <div className="flex mt-8 justify-between">
         <div className="flex ">
           <FontAwesomeIcon
