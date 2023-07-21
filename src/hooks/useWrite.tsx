@@ -39,6 +39,8 @@ export const useWrite = () => {
     };
     if (textValue != "") {
       dispatch(addPost(newPost));
+      setShowEmoji(false);
+      changeTextValue("");
     }
   };
 
