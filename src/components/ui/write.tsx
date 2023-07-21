@@ -52,10 +52,11 @@ const WriteComponent: FC = () => {
             icon={faVideo}
             className="text-low-color-accent cursor-pointer ml-4 hover:text-white"
           ></FontAwesomeIcon>
+          {/* TODO: when click outside it won't vanish */}
           <FontAwesomeIcon
             icon={faSmile}
             className="text-low-color-accent cursor-pointer ml-4 hover:text-white"
-            onClick={() => toggleShowEmoji}
+            onClick={toggleShowEmoji}
           ></FontAwesomeIcon>
           <AddImageModal
             isOpen={isEditModalOpen}

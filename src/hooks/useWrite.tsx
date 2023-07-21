@@ -22,6 +22,7 @@ export const useWrite = () => {
     changeTextValue(value);
   };
   const toggleShowEmoji = () => {
+    console.log("object");
     setShowEmoji(!showEmoji);
   };
   const submitWrite = () => {
