@@ -21,7 +21,7 @@ export const ThreeColLayout: FC<props> = (props) => {
             <img
               src="eagleLogo.png"
               alt=""
-              className="object-fill logoContainer pl-10"
+              className="object-fill logoContainer ml-7"
             />
           </div>
           <MainMenu />
@@ -47,7 +47,7 @@ export const ThreeColLayout: FC<props> = (props) => {
                 </div>
               </Popover.Button>
 
-              <Popover.Panel className="absolute z-10 bg-white ml-5  p-5 w-52 mt-2 rounded-md">
+              <Popover.Panel className="absolute z-10 bg-white ml-5  p-3 w-52 mt-2 rounded-md">
                 <div className="flex cursor-pointer">
                   <FontAwesomeIcon
                     icon={faArrowRightFromBracket}
