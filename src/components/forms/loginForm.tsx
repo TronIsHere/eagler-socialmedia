@@ -1,6 +1,10 @@
 import { Form, FormikProps, withFormik } from "formik";
 import * as yup from "yup";
 import AuthTextInput from "../ui/auth/authInput";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "./../../services/firebase";
+import { useNavigate } from "react-router-dom";
+
 interface LoginFormValues {
   email: string;
   password: string;
@@ -40,8 +44,22 @@ const LoginForm = withFormik<LoginFromProps, LoginFormValues>({
     };
   },
   validationSchema: LoginFormValidationSchema,
-  handleSubmit: (values) => {
-    console.log(values);
+  handleSubmit: async (values) => {
+    // const navigate = useNavigate();
+    const { email, password } = values;
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // navigate("/");
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
   },
 })(innerLoginForm);
 

@@ -1,24 +1,40 @@
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FC } from "react";
-
+import { FC, useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./../../services/firebase";
 import RegisterForm from "../../components/forms/registerForm";
+import { useNavigate } from "react-router-dom";
+import { AuthLayout } from "../../layouts/authLayout";
+import { LoadingPage } from "../loading";
 
 const RegisterPage: FC = () => {
+  const navigate = useNavigate();
+  const [loadingState, changeLoading] = useState<boolean>(true);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+        navigate("/");
+        console.log("uid", uid);
+        console.log(user);
+      } else {
+        // User is signed out
+        // ...
+        changeLoading(false);
+        console.log("user is logged out");
+      }
+    });
+  }, []);
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-2 text-white">
-        <div className="flex justify-center items-center h-screen  ">
-          <div className="flex-col w-3/4   ">
-            <h1 className="text-4xl font-bold">Register</h1>
-            <RegisterForm></RegisterForm>
-            <div className="grid grid-cols-5 mt-12">
-              <div className="w-full h-1 bg-slightGray col-span-2"></div>
-              <div className="w-full h-1 flex justify-center items-center">
-                <span className="text-lg">or</span>
-              </div>
-              <div className="w-full h-1 bg-slightGray col-span-2"></div>
-            </div>
+      {loadingState ? (
+        <LoadingPage />
+      ) : (
+        <AuthLayout
+          buttons={
             <button className="w-full bg-white mt-12 text-black h-10 rounded-md hover:opacity-80">
               <FontAwesomeIcon
                 className="pr-2"
@@ -26,10 +42,11 @@ const RegisterPage: FC = () => {
               ></FontAwesomeIcon>
               Continue with google
             </button>
-          </div>
-        </div>
-        <div className="w-full h-screen side-login"></div>
-      </div>
+          }
+          form={<RegisterForm></RegisterForm>}
+          title="Register"
+        ></AuthLayout>
+      )}
     </>
   );
 };
