@@ -4,8 +4,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Popover } from "@headlessui/react";
+import { signOut } from "firebase/auth";
 import { FC, ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
+
 import MainMenu from "../components/ui/mainMenu";
+import { auth } from "./../services/firebase";
 
 interface props {
   children: ReactNode;
@@ -13,6 +17,21 @@ interface props {
 
 export const ThreeColLayout: FC<props> = (props) => {
   const { children } = props;
+  const navigate = useNavigate();
+
+  const handleLogout = (e: MouseEvent) => {
+    e.preventDefault();
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        navigate("/auth/login");
+        console.log("Signed out successfully");
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
+
   return (
     <>
       <div className="grid grid-cols-5 w-full">
@@ -52,7 +71,7 @@ export const ThreeColLayout: FC<props> = (props) => {
                   <FontAwesomeIcon
                     icon={faArrowRightFromBracket}
                   ></FontAwesomeIcon>
-                  <a href="" className="-mt-1 pl-2">
+                  <a href="" className="-mt-1 pl-2" onClick={handleLogout}>
                     Logout
                   </a>
                 </div>

@@ -1,10 +1,11 @@
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC, useEffect, useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./../../services/firebase";
-import RegisterForm from "../../components/forms/registerForm";
 import { useNavigate } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+
+import RegisterForm from "../../components/forms/registerForm";
+import { auth } from "./../../services/firebase";
 import { AuthLayout } from "../../layouts/authLayout";
 import { LoadingPage } from "../loading";
 

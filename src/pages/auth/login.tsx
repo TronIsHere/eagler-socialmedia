@@ -1,24 +1,37 @@
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FC } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { FC, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import LoginForm from "../../components/forms/loginForm";
+import { AuthLayout } from "../../layouts/authLayout";
+import { LoadingPage } from "../loading";
+import { auth } from "./../../services/firebase";
 
 const LoginPage: FC = () => {
+  const navigate = useNavigate();
+  const [loadingState, changeLoading] = useState<boolean>(true);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        // navigate("/");
+        console.log("uid", uid);
+        console.log(user);
+      } else {
+        console.log("object");
+        changeLoading(false);
+      }
+    });
+  }, []);
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-2 text-white">
-        <div className="flex justify-center items-center h-screen  ">
-          <div className="flex-col w-3/4   ">
-            <h1 className="text-4xl font-bold">Log in</h1>
-            <LoginForm></LoginForm>
-            <div className="grid grid-cols-5 mt-12">
-              <div className="w-full h-1 bg-slightGray col-span-2"></div>
-              <div className="w-full h-1 flex justify-center items-center">
-                <span className="text-lg">or</span>
-              </div>
-              <div className="w-full h-1 bg-slightGray col-span-2"></div>
-            </div>
+      {loadingState ? (
+        <LoadingPage />
+      ) : (
+        <AuthLayout
+          buttons={
             <button className="w-full bg-white mt-12 text-black h-10 rounded-md hover:opacity-80">
               <FontAwesomeIcon
                 className="pr-2"
@@ -26,10 +39,11 @@ const LoginPage: FC = () => {
               ></FontAwesomeIcon>
               Continue with google
             </button>
-          </div>
-        </div>
-        <div className="w-full h-screen side-login"></div>
-      </div>
+          }
+          form={<LoginForm />}
+          title="Log in"
+        ></AuthLayout>
+      )}
     </>
   );
 };

@@ -8,6 +8,7 @@ interface props {
 
 export const AuthLayout: FC<props> = (props) => {
   const { form, title, buttons } = props;
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 text-white">
       <div className="flex justify-center items-center h-screen  ">
