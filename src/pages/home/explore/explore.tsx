@@ -56,7 +56,7 @@ export const ExplorePage: FC = () => {
               Popular
             </Tab>
           </Tab.List>
-          <Tab.Panels className={"p-5 w-full border-t-2 border-slightGray"}>
+          <Tab.Panels className={"w-full border-t-2 border-slightGray"}>
             <Tab.Panel>
               <ForyouPage></ForyouPage>
             </Tab.Panel>
