@@ -19,8 +19,7 @@ export const ThreeColLayout: FC<props> = (props) => {
   const { children } = props;
   const navigate = useNavigate();
 
-  const handleLogout = (e: MouseEvent) => {
-    e.preventDefault();
+  const handleLogout = (event: any) => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
@@ -71,9 +70,9 @@ export const ThreeColLayout: FC<props> = (props) => {
                   <FontAwesomeIcon
                     icon={faArrowRightFromBracket}
                   ></FontAwesomeIcon>
-                  <a href="" className="-mt-1 pl-2" onClick={handleLogout}>
+                  <button className="-mt-1 pl-2" onClick={handleLogout}>
                     Logout
-                  </a>
+                  </button>
                 </div>
               </Popover.Panel>
             </Popover>
