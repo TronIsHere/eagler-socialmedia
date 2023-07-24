@@ -13,6 +13,7 @@ import { ExplorePage } from "./pages/home/explore/explore";
 import { NotificationPage } from "./pages/home/notification";
 import { Provider } from "react-redux";
 import { store } from "./state/store";
+import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
+    <Toaster position="top-right" />
     <Provider store={store}>
       <RouterProvider router={router}></RouterProvider>
     </Provider>

@@ -4,6 +4,7 @@ import AuthTextInput from "../ui/auth/authInput";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./../../services/firebase";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 interface LoginFormValues {
   email: string;
@@ -58,6 +59,12 @@ const LoginForm = withFormik<LoginFromProps, LoginFormValues>({
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        if (errorCode == "auth/wrong-password") {
+          toast.error("Email or password is wrong");
+        } else {
+          toast.error("Something went wrong try again later");
+        }
+
         console.log(errorCode, errorMessage);
       });
   },

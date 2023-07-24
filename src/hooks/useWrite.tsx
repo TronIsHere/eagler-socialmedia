@@ -1,5 +1,6 @@
 import { EmojiClickData } from "emoji-picker-react/dist/types/exposedTypes";
 import { useRef, useState } from "react";
+import { toast } from "react-hot-toast";
 import { addPost } from "../state/slices/postSlice";
 import { useAppDispatch } from "./useRedux";
 
@@ -39,6 +40,7 @@ export const useWrite = () => {
     };
     if (textValue != "") {
       dispatch(addPost(newPost));
+      toast.success("posted a new Eagle");
       setShowEmoji(false);
       changeTextValue("");
     }
