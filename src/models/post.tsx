@@ -1,3 +1,4 @@
+import { DateTime } from "luxon";
 import User from "./user";
 
 export default interface PostModel {
@@ -6,4 +7,5 @@ export default interface PostModel {
   comments: number;
   content: string;
   shared: number;
+  date: DateTime;
 }

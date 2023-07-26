@@ -11,8 +11,9 @@ import PostModel from "../../models/post";
 interface props {
   replies: number;
   post: PostModel;
+  imgSrc?: string;
 }
-const UserWroteColumn: FC<props> = ({ replies, post }) => {
+const UserWroteColumn: FC<props> = ({ replies, post, imgSrc }) => {
   return (
     <div className="border-b-2 border-whiteGray pb-8 p-5">
       <div className="flex">
@@ -26,25 +27,40 @@ const UserWroteColumn: FC<props> = ({ replies, post }) => {
           @{post.user.id}
         </span>
         <div className="bg-low-color-accent rounded-full w-1 h-1 custom-dot-margin"></div>
-        <div className="text-low-color-accent ml-2">5d</div>
+        <div className="text-low-color-accent ml-2">
+          {post.date.toRelativeCalendar()}
+        </div>
       </div>
+
       <div className="ml-16 -mt-3">
         <p className=" text-white preline">{post.content}</p>
-        <div className="flex mt-5 text-low-color-accent">
-          <div className={"cursor-pointer -mt-1 hover:text-white"}>
-            <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
-            <span className="ml-2 -mt-1 mr-4">{post.likes}</span>
+        <div className="">
+          <div className="flex ">
+            {imgSrc ? (
+              <img
+                src={imgSrc}
+                alt=""
+                width={500}
+                className="rounded-lg mt-5 cursor-pointer border-slightGray border-1 "
+              />
+            ) : null}
           </div>
-          <div className={"cursor-pointer -mt-1 hover:text-white"}>
-            <FontAwesomeIcon icon={faFeather}></FontAwesomeIcon>
-            <span className="ml-2 -mt-1 mr-4">{post.comments}</span>
-          </div>
-          <div className={"cursor-pointer -mt-1 hover:text-white"}>
-            <FontAwesomeIcon icon={faCommentDots}></FontAwesomeIcon>
-            <span className="ml-2 -mt-1 mr-4">{post.shared}</span>
-          </div>
-          <div className={"cursor-pointer -mt-1 hover:text-white"}>
-            <FontAwesomeIcon icon={faBookmark}></FontAwesomeIcon>
+          <div className="flex mt-5 text-low-color-accent">
+            <div className={"cursor-pointer -mt-1 hover:text-white"}>
+              <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
+              <span className="ml-2 -mt-1 mr-4">{post.likes}</span>
+            </div>
+            <div className={"cursor-pointer -mt-1 hover:text-white"}>
+              <FontAwesomeIcon icon={faFeather}></FontAwesomeIcon>
+              <span className="ml-2 -mt-1 mr-4">{post.comments}</span>
+            </div>
+            <div className={"cursor-pointer -mt-1 hover:text-white"}>
+              <FontAwesomeIcon icon={faCommentDots}></FontAwesomeIcon>
+              <span className="ml-2 -mt-1 mr-4">{post.shared}</span>
+            </div>
+            <div className={"cursor-pointer -mt-1 hover:text-white"}>
+              <FontAwesomeIcon icon={faBookmark}></FontAwesomeIcon>
+            </div>
           </div>
         </div>
         {replies > 0 ? (
