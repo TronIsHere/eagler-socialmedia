@@ -6,9 +6,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
-import { FC } from "react";
+import { FC, useCallback } from "react";
 import { useWrite } from "../../hooks/useWrite";
 import AddImageModal from "./modals/addImage";
+import { uploadBytes, ref } from "firebase/storage";
+import { storage } from "../../services/firebase";
+import { toast } from "react-hot-toast";
 
 const WriteComponent: FC = () => {
   const {
@@ -22,6 +25,7 @@ const WriteComponent: FC = () => {
     handleChangeValue,
     toggleShowEmoji,
     submitWrite,
+    uploadCallBack,
   } = useWrite();
 
   return (
@@ -59,6 +63,7 @@ const WriteComponent: FC = () => {
             onClick={toggleShowEmoji}
           ></FontAwesomeIcon>
           <AddImageModal
+            uploadCallBack={() => {}}
             isOpen={isEditModalOpen}
             closeCallBack={closeModal}
           ></AddImageModal>

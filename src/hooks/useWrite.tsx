@@ -1,6 +1,9 @@
 import { EmojiClickData } from "emoji-picker-react/dist/types/exposedTypes";
-import { useRef, useState } from "react";
+
+import { DateTime } from "luxon";
+import { useCallback, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
+import { storage } from "../services/firebase";
 import { addPost } from "../state/slices/postSlice";
 import { useAppDispatch } from "./useRedux";
 
@@ -22,6 +25,7 @@ export const useWrite = () => {
   const handleChangeValue = (value: string) => {
     changeTextValue(value);
   };
+  const uploadCallBack = () => {};
   const toggleShowEmoji = () => {
     console.log("object");
     setShowEmoji(!showEmoji);
@@ -34,6 +38,7 @@ export const useWrite = () => {
         id: "rzJJ21",
         avatar: "https://placehold.co/500x500?text=Reza",
       },
+      date: DateTime.now(),
       comments: 0,
       shared: 0,
       content: textValue,
@@ -57,5 +62,6 @@ export const useWrite = () => {
     showEmoji,
     textAreaRef,
     isEditModalOpen,
+    uploadCallBack,
   };
 };

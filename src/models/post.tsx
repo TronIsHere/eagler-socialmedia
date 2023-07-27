@@ -8,4 +8,5 @@ export default interface PostModel {
   content: string;
   shared: number;
   date: DateTime;
+  image?: string;
 }

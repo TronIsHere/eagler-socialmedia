@@ -1,15 +1,16 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { FC, Fragment, useState } from "react";
-import MyDropzone from "../../utils/dropImage";
+import { MyDropzone } from "../../utils/dropImage";
 
 // TODO: will refactor this part to separate file
 
 interface props {
   isOpen: boolean;
   closeCallBack: () => void;
+  uploadCallBack: () => void;
 }
 
-const EditModal: FC<props> = ({ isOpen, closeCallBack }) => {
+const EditModal: FC<props> = ({ isOpen, closeCallBack, uploadCallBack }) => {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -43,7 +44,7 @@ const EditModal: FC<props> = ({ isOpen, closeCallBack }) => {
                     className="flex justify-center cursor-pointer"
                   ></Dialog.Title> */}
                   <div className="">
-                    <MyDropzone></MyDropzone>
+                    <MyDropzone uploadCallBack={uploadCallBack}></MyDropzone>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

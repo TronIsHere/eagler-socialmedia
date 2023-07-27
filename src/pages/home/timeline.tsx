@@ -5,11 +5,20 @@ import { useAppSelector } from "../../hooks/useRedux";
 import PostModel from "../../models/post";
 import { postSelector } from "../../state/slices/postSlice";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./../../services/firebase";
+import { auth, storage } from "./../../services/firebase";
+import { getDownloadURL, listAll, ref } from "firebase/storage";
 
 const TimelinePage: FC = () => {
   const postList = useAppSelector(postSelector);
   useEffect(() => {
+    listAll(ref(storage, "images/")).then((response) => {
+      console.log(response.items[0].name);
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          console.log(url);
+        });
+      });
+    });
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
