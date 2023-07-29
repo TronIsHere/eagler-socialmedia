@@ -5,6 +5,7 @@ import {
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { DateTime } from "luxon";
 import { FC } from "react";
 import PostModel from "../../models/post";
 
@@ -28,7 +29,7 @@ const UserWroteColumn: FC<props> = ({ replies, post, imgSrc }) => {
         </span>
         <div className="bg-low-color-accent rounded-full w-1 h-1 custom-dot-margin"></div>
         <div className="text-low-color-accent ml-2">
-          {post.date.toRelativeCalendar()}
+          {DateTime.fromISO(post.date).toRelativeCalendar()}
         </div>
       </div>
 

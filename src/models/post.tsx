@@ -7,6 +7,6 @@ export default interface PostModel {
   comments: number;
   content: string;
   shared: number;
-  date: DateTime;
+  date: string;
   image?: string;
 }

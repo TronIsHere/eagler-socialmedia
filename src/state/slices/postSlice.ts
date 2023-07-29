@@ -13,7 +13,8 @@ const initialState:PostModel[]=[      {
   },
   comments: 10,
   shared: 5,
-  date:DateTime.now().minus({days:3}),
+  // date:DateTime.now().minus({days:3}),
+  date:DateTime.now().toISODate()!,
   content:
     "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui vero perferendis labore Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, neque temporibus beatae est, hic aut qui dolorem, voluptates rerum distinctio dignissimos eos ea! Veniam magni est nobis sequi, iusto quae!",
 },
@@ -26,7 +27,7 @@ const initialState:PostModel[]=[      {
     email:'',
     posts:[]
   },
-  date:DateTime.now().minus({days:10}),
+  date:DateTime.now().toISODate()!,
   comments: 100,
   shared: 10,
   content: "this is a test text",
