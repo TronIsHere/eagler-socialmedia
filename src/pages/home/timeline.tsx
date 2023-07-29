@@ -22,28 +22,6 @@ const TimelinePage: FC = () => {
         });
       });
     });
-
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        // ...
-        const { displayName, uid, email } = user;
-        await dispatch(
-          updateUser({
-            id: uid,
-            name: displayName!,
-            avatar: "",
-            email: email!,
-            posts: [],
-          })
-        );
-      } else {
-        // User is signed out
-        // ...
-        console.log("user is logged out");
-      }
-    });
   }, []);
   return (
     <>

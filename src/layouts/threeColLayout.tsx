@@ -4,11 +4,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Popover } from "@headlessui/react";
-import { signOut } from "firebase/auth";
-import { FC, ReactNode } from "react";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { FC, ReactNode, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import MainMenu from "../components/ui/mainMenu";
+import { useAppDispatch, useAppSelector } from "../hooks/useRedux";
+import { updateUser, userSelector } from "../state/slices/userSlice";
 import { auth } from "./../services/firebase";
 
 interface props {
@@ -17,6 +19,29 @@ interface props {
 
 export const ThreeColLayout: FC<props> = (props) => {
   const { children } = props;
+  const dispatch = useAppDispatch();
+  const userData = useAppSelector(userSelector);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { displayName, uid, email } = user;
+
+        dispatch(
+          updateUser({
+            id: uid,
+            name: displayName!,
+            avatar: "",
+            email: email!,
+            posts: [],
+          })
+        );
+      } else {
+        // User is signed out
+        // ...
+        console.log("user is logged out");
+      }
+    });
+  }, []);
   const navigate = useNavigate();
 
   const handleLogout = (event: any) => {
@@ -57,7 +82,7 @@ export const ThreeColLayout: FC<props> = (props) => {
                     className="avatar-xsmall rounded-full"
                     alt=""
                   />
-                  <span className="text-white mt-2 ml-3">Erwin aghajani</span>
+                  <span className="text-white mt-2 ml-3">{userData.name}</span>
                   <FontAwesomeIcon
                     icon={faChevronDown}
                     className={"text-white mt-3 ml-3"}
