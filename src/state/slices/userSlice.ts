@@ -15,10 +15,10 @@ const userSlice = createSlice({
     initialState,
     reducers: {
        updateUser:(state, action:PayloadAction<UserModel>) => {
-        state = action.payload;
+        return state = action.payload;
       },
     },
   });
   export const { updateUser } = userSlice.actions;
-  export const userSelector = (state: RootState) => state.rootReducer;
+  export const userSelector = (state: RootState) => state.userReducer
   export default userSlice.reducer;

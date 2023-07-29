@@ -10,9 +10,9 @@ import { getDownloadURL, listAll, ref } from "firebase/storage";
 import { updateUser, userSelector } from "../../state/slices/userSlice";
 
 const TimelinePage: FC = () => {
-  const postList = useAppSelector(postSelector).postReducer;
+  const postList = useAppSelector(postSelector);
   const dispatch = useAppDispatch();
-  const userData = useAppSelector(userSelector).userReducer;
+  const userData = useAppSelector(userSelector);
   useEffect(() => {
     listAll(ref(storage, "images/")).then((response) => {
       console.log(response.items[0].name);
@@ -23,22 +23,21 @@ const TimelinePage: FC = () => {
       });
     });
 
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         // ...
-        // const { displayName, uid, email } = user;
-        dispatch(
+        const { displayName, uid, email } = user;
+        await dispatch(
           updateUser({
-            id: "1",
-            name: "erwin",
-            avatar: "https://placehold.co/500x500?text=Hello+World2",
-            email: "erwin@gmail.com",
+            id: uid,
+            name: displayName!,
+            avatar: "",
+            email: email!,
             posts: [],
           })
         );
-        console.log(userData, 1);
       } else {
         // User is signed out
         // ...

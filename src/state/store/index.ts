@@ -3,15 +3,18 @@ import postReducer from '../slices/postSlice'
 import userReducer from '../slices/userSlice'
 // ...
 
-const rootReducer = combineReducers({
-  postReducer,
-  userReducer
-})
 
 export const store = configureStore({
   reducer: {
-   rootReducer
+    postReducer,
+    userReducer
   },
+  // middleware: (getDefaultMiddleware) =>
+  // getDefaultMiddleware({
+  //   serializableCheck: {
+  //     ignoredActions: ['user/updateUser','post/addPost'],  
+  //   },
+  // }),
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
