@@ -8,6 +8,8 @@ const initialState:PostModel[]=[      {
     name: "Erwin Aghajani",
     id: "feranki",
     avatar: "https://placehold.co/500x500?text=Hello+World",
+    email:'',
+    posts:[]
   },
   comments: 10,
   shared: 5,
@@ -21,6 +23,8 @@ const initialState:PostModel[]=[      {
     name: "mamad taghavi 🐗",
     id: "naz02",
     avatar: "https://placehold.co/500x500?text=Hello+World2",
+    email:'',
+    posts:[]
   },
   date:DateTime.now().minus({days:10}),
   comments: 100,
@@ -37,5 +41,5 @@ const postSlice = createSlice({
   },
 });
 export const { addPost } = postSlice.actions;
-export const postSelector = (state: RootState) => state.postReducer;
+export const postSelector = (state: RootState) => state.rootReducer;
 export default postSlice.reducer;

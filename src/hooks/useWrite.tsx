@@ -1,9 +1,8 @@
 import { EmojiClickData } from "emoji-picker-react/dist/types/exposedTypes";
 
 import { DateTime } from "luxon";
-import { useCallback, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { toast } from "react-hot-toast";
-import { storage } from "../services/firebase";
 import { addPost } from "../state/slices/postSlice";
 import { useAppDispatch } from "./useRedux";
 
@@ -37,6 +36,8 @@ export const useWrite = () => {
         name: "reza jj",
         id: "rzJJ21",
         avatar: "https://placehold.co/500x500?text=Reza",
+        email: "",
+        posts: [],
       },
       date: DateTime.now(),
       comments: 0,
