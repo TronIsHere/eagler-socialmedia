@@ -37,9 +37,9 @@ const UserWroteColumn: FC<props> = ({ replies, post, imgSrc }) => {
         <p className=" text-white preline">{post.content}</p>
         <div className="">
           <div className="flex ">
-            {imgSrc ? (
+            {post.image ? (
               <img
-                src={imgSrc}
+                src={post.image}
                 alt=""
                 width={500}
                 className="rounded-lg mt-5 cursor-pointer border-slightGray border-1 "

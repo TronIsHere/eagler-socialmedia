@@ -2,20 +2,14 @@ import { FC, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { ref, uploadBytes } from "firebase/storage";
-import { storage } from "../../services/firebase";
-import toast from "react-hot-toast";
 
 interface props {
-  uploadCallBack: () => void;
+  uploadCallBack: (files: any) => void;
 }
 
 export const MyDropzone: FC<props> = ({ uploadCallBack }) => {
   const onDrop = useCallback((acceptedFiles: any) => {
-    const imageRef = ref(storage, `images/${acceptedFiles[0].name}`);
-    uploadBytes(imageRef, acceptedFiles[0]).then(() => {
-      toast.success("image uploaded");
-    });
+    uploadCallBack(acceptedFiles);
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 

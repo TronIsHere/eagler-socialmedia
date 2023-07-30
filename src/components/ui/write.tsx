@@ -63,7 +63,7 @@ const WriteComponent: FC = () => {
             onClick={toggleShowEmoji}
           ></FontAwesomeIcon>
           <AddImageModal
-            uploadCallBack={() => {}}
+            uploadCallBack={uploadCallBack}
             isOpen={isEditModalOpen}
             closeCallBack={closeModal}
           ></AddImageModal>

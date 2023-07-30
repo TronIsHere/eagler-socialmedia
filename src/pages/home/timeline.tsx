@@ -13,16 +13,16 @@ const TimelinePage: FC = () => {
   const postList = useAppSelector(postSelector);
   const dispatch = useAppDispatch();
   const userData = useAppSelector(userSelector);
-  useEffect(() => {
-    listAll(ref(storage, "images/")).then((response) => {
-      console.log(response.items[0].name);
-      response.items.forEach((item) => {
-        getDownloadURL(item).then((url) => {
-          console.log(url);
-        });
-      });
-    });
-  }, []);
+  // useEffect(() => {
+  //   listAll(ref(storage, "images/")).then((response) => {
+  //     console.log(response.items[0].name);
+  //     response.items.forEach((item) => {
+  //       getDownloadURL(item).then((url) => {
+  //         console.log(url);
+  //       });
+  //     });
+  //   });
+  // }, []);
   return (
     <>
       <div className="w-full bg-primary h-14 flex"></div>

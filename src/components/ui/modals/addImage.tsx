@@ -7,7 +7,7 @@ import { MyDropzone } from "../../utils/dropImage";
 interface props {
   isOpen: boolean;
   closeCallBack: () => void;
-  uploadCallBack: () => void;
+  uploadCallBack: (files: any) => void;
 }
 
 const EditModal: FC<props> = ({ isOpen, closeCallBack, uploadCallBack }) => {
