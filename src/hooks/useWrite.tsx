@@ -2,7 +2,7 @@ import { EmojiClickData } from "emoji-picker-react/dist/types/exposedTypes";
 import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
 
 import { DateTime } from "luxon";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import PostModel from "../models/post";
 import { storage } from "../services/firebase";
@@ -12,6 +12,7 @@ import { useAppDispatch } from "./useRedux";
 export const useWrite = () => {
   const [textValue, changeTextValue] = useState<string>("");
   const [showEmoji, setShowEmoji] = useState<boolean>(false);
+  const [imageUploadLoading, setImageUploadLoading] = useState<boolean>(false);
   const [imagePath, setImagePath] = useState<string>("");
   const postRef = useRef<PostModel | null>();
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
@@ -31,15 +32,16 @@ export const useWrite = () => {
     changeTextValue(value);
   };
   const uploadCallBack = (acceptedFiles: any) => {
-    console.log("object");
+    setImageUploadLoading(true);
     const imageRef = ref(storage, `images/${acceptedFiles[0].name}`);
+
     uploadBytes(imageRef, acceptedFiles[0]).then(() => {
       toast.success("image uploaded");
+      closeModal();
       setImagePath(imageRef.name);
     });
   };
   const toggleShowEmoji = () => {
-    console.log("object");
     setShowEmoji(!showEmoji);
   };
   const submitWrite = async () => {
@@ -96,7 +98,7 @@ export const useWrite = () => {
           shared: 0,
           content: textValue,
         };
-        console.log(postRef.current, 4);
+        // console.log(postRef.current, 4);
         dispatch(addPost(postRef.current as PostModel));
         toast.success("posted a new Eagle");
         setShowEmoji(false);
@@ -133,5 +135,7 @@ export const useWrite = () => {
     textAreaRef,
     isEditModalOpen,
     uploadCallBack,
+    imageUploadLoading,
+    setImageUploadLoading,
   };
 };

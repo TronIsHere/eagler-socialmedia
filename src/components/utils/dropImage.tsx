@@ -1,16 +1,25 @@
-import { FC, useCallback } from "react";
+import { FC, useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useWrite } from "../../hooks/useWrite";
 
 interface props {
   uploadCallBack: (files: any) => void;
 }
 
 export const MyDropzone: FC<props> = ({ uploadCallBack }) => {
-  const onDrop = useCallback((acceptedFiles: any) => {
-    uploadCallBack(acceptedFiles);
-  }, []);
+  const { imageUploadLoading, setImageUploadLoading } = useWrite();
+  useEffect(() => {
+    console.log(imageUploadLoading, 1);
+  }, [imageUploadLoading]);
+  const onDrop = useCallback(
+    (acceptedFiles: any) => {
+      setImageUploadLoading(true);
+      uploadCallBack(acceptedFiles);
+    },
+    [imageUploadLoading]
+  );
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
@@ -18,6 +27,13 @@ export const MyDropzone: FC<props> = ({ uploadCallBack }) => {
       {...getRootProps()}
       className=" h-64 w-full flex justify-center items-center bg-white rounded-2xl"
     >
+      {imageUploadLoading ? (
+        <div className="absolute bg-white h-64 w-full">
+          <div className="flex justify-center h-full items-center">
+            <span className="loader-black"></span>
+          </div>
+        </div>
+      ) : null}
       <input {...getInputProps()} />
       {isDragActive ? (
         <p>Drop the files here ...</p>
