@@ -72,9 +72,7 @@ export const useWrite = () => {
         response.items.forEach((item) => {
           if (item.name == imagePath) {
             return getDownloadURL(item).then((url) => {
-              //TODO: needs for a lot of refactor duplicated code
-
-              // newImage = url;
+              //TODO: needs refactor :  duplicated code
               postRef.current = {
                 likes: 0,
                 user: {
@@ -96,6 +94,7 @@ export const useWrite = () => {
                 toast.success("posted a new Eagle");
                 setShowEmoji(false);
                 changeTextValue("");
+                setImagePath("");
                 dispatch(updateImageUrl(""));
                 // console.log(newPost);
               }
@@ -127,21 +126,6 @@ export const useWrite = () => {
         // console.log(newPost);
       }
     }
-    // let newPost = {
-    //   likes: 0,
-    //   user: {
-    //     name: "reza jj",
-    //     id: "rzJJ21",
-    //     avatar: "https://placehold.co/500x500?text=Reza",
-    //     email: "",
-    //     posts: [],
-    //   },
-    //   date: DateTime.now().toISODate()!,
-    //   comments: 0,
-    //   shared: 0,
-    //   content: textValue,
-    //   image: newImage,
-    // };
   };
   return {
     submitWrite,

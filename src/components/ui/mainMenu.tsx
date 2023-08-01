@@ -9,6 +9,7 @@ import {
 import { NavLink } from "react-router-dom";
 
 const MainMenu: FC = () => {
+  console.log("first");
   return (
     <ul className="text-accent p-8" id="mainMenu">
       <li className="p-2 hover:bg-slightGray cursor-pointer menu-link">
