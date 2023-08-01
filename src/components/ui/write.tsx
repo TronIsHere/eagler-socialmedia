@@ -6,12 +6,23 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
-import { FC, useContext, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useAppSelector } from "../../hooks/useRedux";
 import { useWrite } from "../../hooks/useWrite";
 import { writeSelector } from "../../state/slices/writeSlice";
 import AddImageModal from "./modals/addImage";
 const WriteComponent: FC = () => {
+  const { imageUrl } = useAppSelector(writeSelector);
+  const [showImageInWrite, setShowImageInWrite] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (imageUrl.length > 3) {
+      setShowImageInWrite(true);
+    } else {
+      setShowImageInWrite(false);
+    }
+  }, [imageUrl]);
+
   const {
     textAreaRef,
     textValue,
@@ -26,15 +37,7 @@ const WriteComponent: FC = () => {
     imageUrlRef,
     submitWrite,
   } = useWrite();
-  const { imageUrl } = useAppSelector(writeSelector);
-  const [showImageinWrite, setShowImageinWrite] = useState<boolean>(false);
-  useEffect(() => {
-    if (imageUrl.length > 3) {
-      setShowImageinWrite(true);
-    } else {
-      setShowImageinWrite(false);
-    }
-  }, [imageUrl]);
+
   return (
     <div className="border-b-2 border-whiteGray  p-5  ">
       <textarea
@@ -47,11 +50,6 @@ const WriteComponent: FC = () => {
         placeholder="Share your thoughts..."
         className="bg-secondary w-full focus:outline-none text-second-accent text-xl "
       />
-      {/* <ReactQuill
-        className="text-white"
-        value={textValue}
-        onChange={handleChangeValue}
-      /> */}
       <div className="flex mt-8 justify-between">
         <div className="flex ">
           <FontAwesomeIcon
@@ -95,7 +93,7 @@ const WriteComponent: FC = () => {
           <FontAwesomeIcon icon={faPaperPlane}></FontAwesomeIcon>
         </button>
       </div>
-      {showImageinWrite ? (
+      {showImageInWrite ? (
         <img
           className="mt-10 rounded-lg cursor-pointer"
           src={imageUrlRef.current}
