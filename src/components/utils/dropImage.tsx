@@ -10,16 +10,10 @@ interface props {
 
 export const MyDropzone: FC<props> = ({ uploadCallBack }) => {
   const { imageUploadLoading, setImageUploadLoading } = useWrite();
-  useEffect(() => {
-    console.log(imageUploadLoading, 1);
-  }, [imageUploadLoading]);
-  const onDrop = useCallback(
-    (acceptedFiles: any) => {
-      setImageUploadLoading(true);
-      uploadCallBack(acceptedFiles);
-    },
-    [imageUploadLoading]
-  );
+  const onDrop = (acceptedFiles: any) => {
+    setImageUploadLoading(true);
+    uploadCallBack(acceptedFiles);
+  };
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (

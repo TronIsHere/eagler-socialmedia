@@ -6,13 +6,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
-import { FC, useCallback } from "react";
+import { FC, useContext, useEffect, useState } from "react";
+import { useAppSelector } from "../../hooks/useRedux";
 import { useWrite } from "../../hooks/useWrite";
+import { writeSelector } from "../../state/slices/writeSlice";
 import AddImageModal from "./modals/addImage";
-import { uploadBytes, ref } from "firebase/storage";
-import { storage } from "../../services/firebase";
-import { toast } from "react-hot-toast";
-
 const WriteComponent: FC = () => {
   const {
     textAreaRef,
@@ -24,10 +22,19 @@ const WriteComponent: FC = () => {
     addEmoji,
     handleChangeValue,
     toggleShowEmoji,
-    submitWrite,
     uploadCallBack,
+    imageUrlRef,
+    submitWrite,
   } = useWrite();
-
+  const { imageUrl } = useAppSelector(writeSelector);
+  const [showImageinWrite, setShowImageinWrite] = useState<boolean>(false);
+  useEffect(() => {
+    if (imageUrl.length > 3) {
+      setShowImageinWrite(true);
+    } else {
+      setShowImageinWrite(false);
+    }
+  }, [imageUrl]);
   return (
     <div className="border-b-2 border-whiteGray  p-5  ">
       <textarea
@@ -88,6 +95,14 @@ const WriteComponent: FC = () => {
           <FontAwesomeIcon icon={faPaperPlane}></FontAwesomeIcon>
         </button>
       </div>
+      {showImageinWrite ? (
+        <img
+          className="mt-10 rounded-lg cursor-pointer"
+          src={imageUrlRef.current}
+          alt=""
+          width={300}
+        />
+      ) : null}
     </div>
   );
 };

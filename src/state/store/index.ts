@@ -1,13 +1,15 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import postReducer from '../slices/postSlice'
 import userReducer from '../slices/userSlice'
+import writeReducer from '../slices/writeSlice'
 // ...
 
 
 export const store = configureStore({
   reducer: {
     postReducer,
-    userReducer
+    userReducer,
+    writeReducer
   },
   // middleware: (getDefaultMiddleware) =>
   // getDefaultMiddleware({

@@ -1,12 +1,19 @@
 import { EmojiClickData } from "emoji-picker-react/dist/types/exposedTypes";
-import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
+import {
+  getDownloadURL,
+  listAll,
+  ref,
+  StorageReference,
+  uploadBytes,
+} from "firebase/storage";
 
 import { DateTime } from "luxon";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import PostModel from "../models/post";
 import { storage } from "../services/firebase";
 import { addPost } from "../state/slices/postSlice";
+import { updateImageUrl } from "../state/slices/writeSlice";
 import { useAppDispatch } from "./useRedux";
 
 export const useWrite = () => {
@@ -14,10 +21,12 @@ export const useWrite = () => {
   const [showEmoji, setShowEmoji] = useState<boolean>(false);
   const [imageUploadLoading, setImageUploadLoading] = useState<boolean>(false);
   const [imagePath, setImagePath] = useState<string>("");
+  let [isEditModalOpen, setEditModalOpen] = useState<boolean>(false);
+  let imageUrlRef = useRef<string>("");
   const postRef = useRef<PostModel | null>();
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  let [isEditModalOpen, setEditModalOpen] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  let imageRef: StorageReference;
 
   const closeModal = () => {
     setEditModalOpen(false);
@@ -31,18 +40,31 @@ export const useWrite = () => {
   const handleChangeValue = (value: string) => {
     changeTextValue(value);
   };
-  const uploadCallBack = (acceptedFiles: any) => {
+  const uploadCallBack = async (acceptedFiles: any) => {
     setImageUploadLoading(true);
-    const imageRef = ref(storage, `images/${acceptedFiles[0].name}`);
+    imageRef = ref(storage, `images/${acceptedFiles[0].name}`);
 
-    uploadBytes(imageRef, acceptedFiles[0]).then(() => {
+    uploadBytes(imageRef, acceptedFiles[0]).then(async () => {
       toast.success("image uploaded");
       closeModal();
       setImagePath(imageRef.name);
+      await getImageUrl(imageRef.name);
     });
   };
   const toggleShowEmoji = () => {
     setShowEmoji(!showEmoji);
+  };
+  const getImageUrl = async (name: string) => {
+    await listAll(ref(storage, "images/")).then((response) => {
+      response.items.forEach((item) => {
+        if (item.name == name) {
+          getDownloadURL(item).then((url: string) => {
+            dispatch(updateImageUrl(url));
+            return (imageUrlRef.current = url);
+          });
+        }
+      });
+    });
   };
   const submitWrite = async () => {
     if (imagePath != "") {
@@ -76,6 +98,7 @@ export const useWrite = () => {
                 toast.success("posted a new Eagle");
                 setShowEmoji(false);
                 changeTextValue("");
+                dispatch(updateImageUrl(""));
                 // console.log(newPost);
               }
             });
@@ -122,7 +145,6 @@ export const useWrite = () => {
     //   image: newImage,
     // };
   };
-
   return {
     submitWrite,
     closeModal,
@@ -137,5 +159,10 @@ export const useWrite = () => {
     uploadCallBack,
     imageUploadLoading,
     setImageUploadLoading,
+    imageUrlRef,
+    imagePath,
+    postRef,
+    setShowEmoji,
+    changeTextValue,
   };
 };
