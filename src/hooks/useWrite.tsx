@@ -68,8 +68,6 @@ export const useWrite = () => {
   };
   const submitWrite = async () => {
     if (imagePath != "") {
-      // debugger;
-      console.log(textValue, 1);
       await listAll(ref(storage, "images/")).then((response) => {
         response.items.forEach((item) => {
           if (item.name == imagePath) {
