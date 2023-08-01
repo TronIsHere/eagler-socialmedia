@@ -22,11 +22,11 @@ export const ThreeColLayout: FC<props> = (props) => {
   const { children } = props;
   const dispatch = useAppDispatch();
   const userData = useAppSelector(userSelector);
+  console.log(userData);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const { displayName, uid, email } = user;
-
+        const { displayName, uid, email, metadata } = user;
         dispatch(
           updateUser({
             id: uid,
@@ -34,6 +34,7 @@ export const ThreeColLayout: FC<props> = (props) => {
             avatar: "",
             email: email!,
             posts: [],
+            createdAt: metadata.creationTime!,
           })
         );
       } else {

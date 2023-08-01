@@ -6,13 +6,15 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { DateTime } from "luxon";
 
 import EditModal from "../../components/ui/modals/editUser";
 import UserWroteColumn from "../../components/ui/userWrote";
 import { useProfile } from "../../hooks/useProfile";
 
 const ProfilePage = () => {
-  const { closeModal, openModal, isEditModalOpen } = useProfile();
+  const { closeModal, openModal, isEditModalOpen, userData } = useProfile();
+
   return (
     <>
       <div className="w-full bg-primary h-14 flex"></div>
@@ -32,7 +34,7 @@ const ProfilePage = () => {
               @feranki
             </p>
             <span className="text-white mt-2 text-2xl font-bold">
-              Erwin Aghajani
+              {userData.name ? userData.name : <br></br>}
             </span>
           </div>
           <div className="flex justify-center">
@@ -41,11 +43,13 @@ const ProfilePage = () => {
                 icon={faCalendarAlt}
                 className="mr-2"
               ></FontAwesomeIcon>
-              Joined since july 2023
+              {`Joined since ${
+                DateTime.fromHTTP(userData.createdAt).monthLong
+              } ${DateTime.fromHTTP(userData.createdAt).year}`}
             </p>
             <p className="mt-4 ml-10 text-links hover:underline">
               <FontAwesomeIcon icon={faLink} className="mr-2"></FontAwesomeIcon>
-              whitediv.com
+              {userData.website ? userData.website : ""}
             </p>
           </div>
           <div className="flex justify-center mt-8">

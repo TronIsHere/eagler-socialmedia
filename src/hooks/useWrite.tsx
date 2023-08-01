@@ -75,6 +75,7 @@ export const useWrite = () => {
         avatar: "https://placehold.co/500x500?text=Reza",
         email: "",
         posts: [],
+        createdAt: "",
       },
       date: DateTime.now().toISODate()!,
       comments: 0,

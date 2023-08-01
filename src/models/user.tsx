@@ -6,4 +6,6 @@ export default interface UserModel {
   avatar: string;
   email: string;
   posts: Posts[];
+  createdAt: string;
+  website?: string;
 }

@@ -1,12 +1,16 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { FC, Fragment, useState } from 'react'
-interface props{
- isOpen:boolean
- closeCallBack: ()=> void
+import { Dialog, Transition } from "@headlessui/react";
+import { FC, Fragment, useState } from "react";
+import { useAppDispatch } from "../../../hooks/useRedux";
+import { updateWebsite } from "../../../state/slices/userSlice";
+interface props {
+  isOpen: boolean;
+  closeCallBack: () => void;
 }
 
-const EditModal:FC<props> =({isOpen,closeCallBack})=> {
-
+const EditModal: FC<props> = ({ isOpen, closeCallBack }) => {
+  const dispatch = useAppDispatch();
+  //TODO: gotta change this to more useable comprehensive function not only for website
+  const [websiteState, setWebsiteState] = useState<string>("");
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -39,16 +43,38 @@ const EditModal:FC<props> =({isOpen,closeCallBack})=> {
                     as="div"
                     className="flex justify-center cursor-pointer"
                   >
-                   <img src="https://placehold.co/500x500?text=Avatar" className="rounded-full" width={85}alt="" />
+                    <img
+                      src="https://placehold.co/500x500?text=Avatar"
+                      className="rounded-full"
+                      width={85}
+                      alt=""
+                    />
                   </Dialog.Title>
                   <div className="mt-2">
-                    <form >
-                        <p className='mt-5'>Name</p>
-                        <input type="text" className='border-gray-400 rounded-sm border-2 w-full h-8 mt-2 pl-2'/>
-                        <p className='mt-5'>Link</p>
-                        <input type="text" className='border-gray-400 rounded-sm border-2 w-full h-8 mt-2 pl-2'/>
-                        <p className='mt-5'>user id</p>
-                        <input type="text" className='border-gray-400 rounded-sm border-2 w-full h-8 mt-2 pl-2'/>
+                    <form>
+                      <p className="mt-5">Name</p>
+                      <input
+                        type="text"
+                        className="border-gray-400 rounded-sm border-2 w-full h-8 mt-2 pl-2"
+                      />
+                      <p className="mt-5">Website</p>
+                      <input
+                        type="text"
+                        className="border-gray-400 rounded-sm border-2 w-full h-8 mt-2 pl-2"
+                        onChange={(e) => {
+                          setWebsiteState(e.target.value);
+                        }}
+                      />
+                      <p className="mt-5">Link</p>
+                      <input
+                        type="text"
+                        className="border-gray-400 rounded-sm border-2 w-full h-8 mt-2 pl-2"
+                      />
+                      <p className="mt-5">user id</p>
+                      <input
+                        type="text"
+                        className="border-gray-400 rounded-sm border-2 w-full h-8 mt-2 pl-2"
+                      />
                     </form>
                   </div>
 
@@ -56,7 +82,9 @@ const EditModal:FC<props> =({isOpen,closeCallBack})=> {
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mt-5"
-                      onClick={closeCallBack}
+                      onClick={() => {
+                        dispatch(updateWebsite(websiteState));
+                      }}
                     >
                       Edit
                     </button>
@@ -68,6 +96,6 @@ const EditModal:FC<props> =({isOpen,closeCallBack})=> {
         </Dialog>
       </Transition>
     </>
-  )
-}
+  );
+};
 export default EditModal;
