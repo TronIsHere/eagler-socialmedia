@@ -1,16 +1,25 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { FC, Fragment, useState } from "react";
 import { useAppDispatch } from "../../../hooks/useRedux";
-import { updateWebsite } from "../../../state/slices/userSlice";
+import { updateProfile } from "../../../state/slices/userSlice";
 interface props {
   isOpen: boolean;
   closeCallBack: () => void;
 }
+interface profileModel {
+  name: string;
+  website: string;
+  id: string;
+}
 
 const EditModal: FC<props> = ({ isOpen, closeCallBack }) => {
   const dispatch = useAppDispatch();
-  //TODO: gotta change this to more useable comprehensive function not only for website
-  const [websiteState, setWebsiteState] = useState<string>("");
+
+  const [userState, setUserState] = useState<profileModel>({
+    name: "",
+    website: "",
+    id: "",
+  });
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -56,24 +65,37 @@ const EditModal: FC<props> = ({ isOpen, closeCallBack }) => {
                       <input
                         type="text"
                         className="border-gray-400 rounded-sm border-2 w-full h-8 mt-2 pl-2"
+                        value={userState.name}
+                        onChange={(e) => {
+                          setUserState((prevState) => ({
+                            ...prevState,
+                            name: e.target.value,
+                          }));
+                        }}
                       />
                       <p className="mt-5">Website</p>
                       <input
                         type="text"
                         className="border-gray-400 rounded-sm border-2 w-full h-8 mt-2 pl-2"
+                        value={userState.website}
                         onChange={(e) => {
-                          setWebsiteState(e.target.value);
+                          setUserState((prevState) => ({
+                            ...prevState,
+                            website: e.target.value,
+                          }));
                         }}
-                      />
-                      <p className="mt-5">Link</p>
-                      <input
-                        type="text"
-                        className="border-gray-400 rounded-sm border-2 w-full h-8 mt-2 pl-2"
                       />
                       <p className="mt-5">user id</p>
                       <input
                         type="text"
                         className="border-gray-400 rounded-sm border-2 w-full h-8 mt-2 pl-2"
+                        value={userState.id}
+                        onChange={(e) => {
+                          setUserState((prevState) => ({
+                            ...prevState,
+                            id: e.target.value,
+                          }));
+                        }}
                       />
                     </form>
                   </div>
@@ -83,7 +105,8 @@ const EditModal: FC<props> = ({ isOpen, closeCallBack }) => {
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 mt-5"
                       onClick={() => {
-                        dispatch(updateWebsite(websiteState));
+                        closeCallBack();
+                        dispatch(updateProfile(userState));
                       }}
                     >
                       Edit

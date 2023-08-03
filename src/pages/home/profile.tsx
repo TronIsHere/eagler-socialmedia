@@ -7,6 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { DateTime } from "luxon";
+import { useState } from "react";
 
 import EditModal from "../../components/ui/modals/editUser";
 import UserWroteColumn from "../../components/ui/userWrote";
@@ -31,7 +32,7 @@ const ProfilePage = () => {
           </div>
           <div className="flex justify-center  items-center flex-col">
             <p className="text-low-color-accent mt-4 cursor-pointer hover:text-accent">
-              @feranki
+              @{userData.id}
             </p>
             <span className="text-white mt-2 text-2xl font-bold">
               {userData.name ? userData.name : <br></br>}

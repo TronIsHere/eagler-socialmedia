@@ -12,9 +12,10 @@ const initialState:UserModel= {
     createdAt:'',
     website:undefined
 };
-interface partialModel{
-  row:string,
-  data:string
+interface profileModel {
+  name: string;
+  website: string;
+  id: string;
 }
 
 const userSlice = createSlice({
@@ -24,11 +25,13 @@ const userSlice = createSlice({
        updateUser:(state, action:PayloadAction<UserModel>) => {
         return state = action.payload;
       },
-      updateWebsite:(state, action:PayloadAction<string>) => {
-         state.website = action.payload;
+      updateProfile:(state, action:PayloadAction<profileModel>) => {
+         state.website = action.payload.website;
+         state.name = action.payload.name;
+         state.id = action.payload.id;
       },
     },
   });
-  export const { updateUser,updateWebsite } = userSlice.actions;
+  export const { updateUser,updateProfile } = userSlice.actions;
   export const userSelector = (state: RootState) => state.userReducer
   export default userSlice.reducer;
