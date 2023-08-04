@@ -1,25 +1,31 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { FC, Fragment, useState } from "react";
+import { FC, Fragment, useEffect, useState } from "react";
 import { useAppDispatch } from "../../../hooks/useRedux";
 import { updateProfile } from "../../../state/slices/userSlice";
 interface props {
   isOpen: boolean;
   closeCallBack: () => void;
+  data?: object;
 }
 interface profileModel {
   name: string;
   website: string;
-  id: string;
+  user_id: string;
 }
 
-const EditModal: FC<props> = ({ isOpen, closeCallBack }) => {
+const EditModal: FC<props> = ({ isOpen, closeCallBack, data }) => {
   const dispatch = useAppDispatch();
-
   const [userState, setUserState] = useState<profileModel>({
     name: "",
     website: "",
-    id: "",
+    user_id: "",
   });
+  console.log(data);
+  useEffect(() => {
+    setUserState((prevState) => ({ ...prevState, ...data }));
+    console.log(userState, 2);
+  }, [data]);
+  console.log(userState, 1);
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -89,11 +95,11 @@ const EditModal: FC<props> = ({ isOpen, closeCallBack }) => {
                       <input
                         type="text"
                         className="border-gray-400 rounded-sm border-2 w-full h-8 mt-2 pl-2"
-                        value={userState.id}
+                        value={userState.user_id ? userState.user_id : ""}
                         onChange={(e) => {
                           setUserState((prevState) => ({
                             ...prevState,
-                            id: e.target.value,
+                            user_id: e.target.value,
                           }));
                         }}
                       />

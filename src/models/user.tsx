@@ -8,4 +8,5 @@ export default interface UserModel {
   posts: Posts[];
   createdAt: string;
   website?: string;
+  user_id?: string;
 }

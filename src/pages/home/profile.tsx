@@ -32,7 +32,7 @@ const ProfilePage = () => {
           </div>
           <div className="flex justify-center  items-center flex-col">
             <p className="text-low-color-accent mt-4 cursor-pointer hover:text-accent">
-              @{userData.id}
+              {userData.user_id ? `@${userData.user_id}` : ""}
             </p>
             <span className="text-white mt-2 text-2xl font-bold">
               {userData.name ? userData.name : <br></br>}
@@ -48,10 +48,13 @@ const ProfilePage = () => {
                 DateTime.fromHTTP(userData.createdAt).monthLong
               } ${DateTime.fromHTTP(userData.createdAt).year}`}
             </p>
-            <p className="mt-4 ml-10 text-links hover:underline">
+            <a
+              className="mt-4 ml-10 text-links hover:underline"
+              href={`https://${userData.website}`}
+            >
               <FontAwesomeIcon icon={faLink} className="mr-2"></FontAwesomeIcon>
               {userData.website ? userData.website : ""}
-            </p>
+            </a>
           </div>
           <div className="flex justify-center mt-8">
             <div className="flex text-white border-gray-600 border-2 p-2 px-5 rounded-lg mr-5 cursor-pointer">
@@ -81,6 +84,7 @@ const ProfilePage = () => {
             <EditModal
               isOpen={isEditModalOpen}
               closeCallBack={closeModal}
+              data={{ name: userData.name }}
             ></EditModal>
           </div>
         </div>

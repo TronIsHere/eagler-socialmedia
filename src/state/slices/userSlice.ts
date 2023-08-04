@@ -10,12 +10,13 @@ const initialState:UserModel= {
     email:'',
     posts:[],
     createdAt:'',
-    website:undefined
+    website:undefined,
+    user_id:''
 };
 interface profileModel {
   name: string;
   website: string;
-  id: string;
+  user_id: string;
 }
 
 const userSlice = createSlice({
@@ -28,7 +29,7 @@ const userSlice = createSlice({
       updateProfile:(state, action:PayloadAction<profileModel>) => {
          state.website = action.payload.website;
          state.name = action.payload.name;
-         state.id = action.payload.id;
+         state.user_id = action.payload.user_id;
       },
     },
   });
