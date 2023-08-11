@@ -6,8 +6,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { DateTime } from "luxon";
-import { FC } from "react";
+import { FC, useState } from "react";
 import PostModel from "../../models/post";
+import ShowImage from "./modals/showImage";
 
 interface props {
   replies: number;
@@ -15,6 +16,7 @@ interface props {
   imgSrc?: string;
 }
 const UserWroteColumn: FC<props> = ({ replies, post, imgSrc }) => {
+  const [imageShowState, setImageShow] = useState(false);
   return (
     <div className="border-b-2 border-whiteGray pb-8 p-5">
       <div className="flex">
@@ -43,8 +45,19 @@ const UserWroteColumn: FC<props> = ({ replies, post, imgSrc }) => {
                 alt=""
                 width={500}
                 className="rounded-lg mt-5 cursor-pointer border-slightGray border-1 "
+                onClick={() => {
+                  setImageShow(true);
+                }}
               />
             ) : null}
+            <ShowImage
+              imgSrc={post.image!}
+              OpenModal={imageShowState}
+              onCloseCallback={() => {
+                setImageShow(false);
+              }}
+            ></ShowImage>
+            ;
           </div>
           <div className="flex mt-5 text-low-color-accent">
             <div className={"cursor-pointer -mt-1 hover:text-white"}>
